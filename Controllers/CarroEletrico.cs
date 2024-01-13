@@ -129,7 +129,7 @@ namespace VOLVO_API.Controllers
             }
         }
 
-        [HttpPost("{placa}/{quantidadeKW}")]
+        [HttpPost("Abastecer/{placa}/{quantidadeKW}")]
         public IActionResult PostAbastecerBateria(string placa, double quantidadeKW)
         {
             try
@@ -157,9 +157,32 @@ namespace VOLVO_API.Controllers
             }
         }
 
-        /*
-        [HttpPost] //Viajar - Com base no Modelo do carro e a distancia em KM
-        */
+        [HttpPost("Viajar/{placa}/{distanciaKM}")]
+        public IActionResult ViajarComCarroEletrico(string placa, double distanciaKM)
+        {
+            try
+            {
+                var carro = carrosEletricos.FirstOrDefault(c => c.Placa == placa);
+
+                if (carro == null)
+                {
+                    return NotFound($"Carro com a placa {placa} não encontrado.");
+                }
+
+                if (carro.ViajarComCarro(distanciaKM))
+                {
+                    return Ok($"Viagem Realizada!\nCarga restante na bateria: {carro.BateriaSelecionada.ChecarCarga()}.");
+                }
+                else
+                {
+                    return BadRequest($"A Viagem não pode ser realizada, verifique a integridade do carro e a carga da Bateria.");
+                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest($"Erro ao viajar com o carro de placa {placa}.\n{ex.Message}");
+            }
+        }
     }
 }
 

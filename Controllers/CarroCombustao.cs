@@ -104,8 +104,6 @@ namespace VOLVO_API.Controllers
                 return BadRequest($"Erro ao atualizar o carro elétrico: {ex.Message}");
             }
         }
-
-        
         /*
         [HttpGet("{placa}")]
         [HttpPost("{placa}/{quantidadeL}")]
