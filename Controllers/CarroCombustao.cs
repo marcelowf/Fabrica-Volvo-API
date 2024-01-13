@@ -104,8 +104,28 @@ namespace VOLVO_API.Controllers
                 return BadRequest($"Erro ao atualizar o carro elétrico: {ex.Message}");
             }
         }
-        /*
+
         [HttpGet("{placa}")]
+        public IActionResult getCombustivelTanque(string placa)
+        {
+            try
+            {
+                var carro = carrosCombustao.FirstOrDefault(c => c.Placa == placa);
+
+                if (carro == null)
+                {
+                    return NotFound($"Carro com a placa {placa} não encontrado.");
+                }
+                
+                double? carga = carro.TanqueSelecionado.ChecarCombustivel();
+                return Ok($"Carga do tanque para o carro com a placa {placa}: {carga}");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao checar a carga do tanque: {ex.Message}");
+            }
+        }
+        /*
         [HttpPost("{placa}/{quantidadeL}")]
         [HttpPost] //Viajar - Com base no Modelo do carro e a distancia em KM
         */
