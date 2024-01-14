@@ -66,7 +66,6 @@ namespace VOLVO_API
 
         public Motor()
         {
-            
         }
 
         public Motor(string modelo, double potencia)

@@ -20,6 +20,7 @@ namespace VOLVO_API.Controllers
             {
                 carrosCombustao = new List<Combustao>();
             }
+
             if(nomesCarrosCombustao == null)
             {
                 nomesCarrosCombustao = new List<string>();
@@ -185,4 +186,3 @@ namespace VOLVO_API.Controllers
         }
     }
 }
-

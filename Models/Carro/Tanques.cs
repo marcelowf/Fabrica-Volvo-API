@@ -97,7 +97,6 @@ namespace VOLVO_API
 
         public Tanque()
         {
-            
         }
 
         public Tanque(string modelo, double capacidadeL)

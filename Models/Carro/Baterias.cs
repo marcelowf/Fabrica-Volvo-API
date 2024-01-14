@@ -96,8 +96,7 @@ namespace VOLVO_API
         }
 
         public Bateria()
-        {
-            
+        { 
         }
 
         public Bateria(string modelo, double capacidadeKW)

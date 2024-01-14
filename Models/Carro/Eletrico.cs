@@ -69,7 +69,6 @@ namespace VOLVO_API
 
         public Eletrico()
         {
-
         }
 
         public Eletrico(string marcaVeiculo, string modeloVeiculo, int anoFabricacaoVeiculo, double precoVeiculo, string corVeiculo, double quilometragemCarro, 

@@ -159,7 +159,6 @@ namespace VOLVO_API
 
         public Veiculo()
         {
-            
         }
 
         public Veiculo(string marca, string modelo, int anoFabricacao, double preco, string cor)

@@ -189,8 +189,7 @@ namespace VOLVO_API
         } 
 
         public Carro()
-        {
-            
+        { 
         }
 
         public Carro(string marcaVeiculo, string modeloVeiculo, int anoFabricacaoVeiculo, double precoVeiculo, string corVeiculo, double quilometragem, int numeroPortas, bool tetoSolar, string placaCarro, List<Motor> motoresDisponiveis, string modeloMotorSelecionado)
