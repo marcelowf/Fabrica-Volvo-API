@@ -19,6 +19,9 @@ namespace VOLVO_API.Controllers
             if (carrosCombustao == null)
             {
                 carrosCombustao = new List<Combustao>();
+            }
+            if(nomesCarrosCombustao == null)
+            {
                 nomesCarrosCombustao = new List<string>();
                 AdicionarListaNomesCarrosCombustao();
             }
@@ -125,8 +128,37 @@ namespace VOLVO_API.Controllers
                 return BadRequest($"Erro ao checar a carga do tanque: {ex.Message}");
             }
         }
+
+        [HttpPost("Abastecer/{placa}/{quantidadeL}")]
+        public IActionResult PostAbastecerTanque(string placa, double quantidadeL)
+        {
+            try
+            {
+                var carro = carrosCombustao.FirstOrDefault(c => c.Placa == placa);
+
+                if (carro == null)
+                {
+                    return NotFound($"Carro com a placa {placa} não encontrado.");
+                }
+
+                if (carro.TanqueSelecionado.AbastecerCombustao(quantidadeL))
+                {
+                    double? CombustivelAtual = carro.TanqueSelecionado.ChecarCombustivel();
+                    return Ok($"Tanque abastecido com +{quantidadeL} Litros. Carga atual: {CombustivelAtual}L.");
+                }
+                else
+                {
+                    return BadRequest($"Valor inválido ou maior que a capacidade do Tanque.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao abastecer o tanque: {ex.Message}");
+            }
+        }
+
+        
         /*
-        [HttpPost("{placa}/{quantidadeL}")]
         [HttpPost] //Viajar - Com base no Modelo do carro e a distancia em KM
         */
     }

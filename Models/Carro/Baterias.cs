@@ -107,11 +107,11 @@ namespace VOLVO_API
             CargaBateria = 0.0;
         }
         
-        public bool Abastecer(double quantidade)
+        public bool AbastecerEletrico(double quantidade)
         {
             double novaCarga = CargaBateria.GetValueOrDefault() + quantidade;
 
-            if (novaCarga > CapacidadeKW || quantidade <= 0)
+            if (novaCarga >= CapacidadeKW || quantidade <= 0)
             {
                 return false;
             }

@@ -82,7 +82,7 @@ namespace VOLVO_API
             {
                 try
                 {
-                    if (value == null || value < 0)
+                    if (value == null || value < 0 || value > CapacidadeL)
                     {
                         throw new SetPropriedadeException("Valor inválido para a propriedade LitrosTanque.");
                     }
@@ -100,25 +100,29 @@ namespace VOLVO_API
             
         }
 
-        public Tanque(string modelo, double capacidadeKW)
+        public Tanque(string modelo, double capacidadeL)
         {
             Modelo = modelo;
-            CapacidadeL = capacidadeKW;
+            CapacidadeL = capacidadeL;
+            LitrosTanque = 0.0;
         }
 
-        public bool Abastecer(double quantidade)
+        public bool AbastecerCombustao(double quantidade)
         {
-            if(LitrosTanque + quantidade < CapacidadeL)
+            double novaCarga = LitrosTanque.GetValueOrDefault() + quantidade;
+
+            if(novaCarga >= CapacidadeL ||  quantidade <= 0)
             {
-                LitrosTanque += quantidade;
-                return true;
+                return false;
             }
-            return false;
+            
+            LitrosTanque = novaCarga;
+            return true;
         }
 
         public double? ChecarCombustivel()
         {
-                return LitrosTanque;
+            return LitrosTanque;
         }
     }
 }

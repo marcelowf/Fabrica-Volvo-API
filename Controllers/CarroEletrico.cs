@@ -141,7 +141,7 @@ namespace VOLVO_API.Controllers
                     return NotFound($"Carro com a placa {placa} não encontrado.");
                 }
 
-                if (carro.BateriaSelecionada.Abastecer(quantidadeKW))
+                if (carro.BateriaSelecionada.AbastecerEletrico(quantidadeKW))
                 {
                     double? cargaAtual = carro.BateriaSelecionada.ChecarCarga();
                     return Ok($"Bateria carregada com +{quantidadeKW}KW. Carga atual: {cargaAtual}KW.");
