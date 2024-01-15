@@ -126,7 +126,7 @@ namespace VOLVO_API.Controllers
                     return NotFound($"Carro com a placa {placa} não encontrado.");
                 }
                 
-                double? carga = carro.BateriaSelecionada.ChecarCarga();
+                double? carga = carro.BateriaSelecionada?.ChecarCarga();
                 return Ok($"Carga da bateria para o carro com a placa {placa}: {carga}");
             }
             catch (Exception ex)
@@ -179,7 +179,7 @@ namespace VOLVO_API.Controllers
 
                 if (carro.ViajarComCarro(distanciaKM))
                 {
-                    return Ok($"Viagem Realizada!\nCarga restante na bateria: {carro.BateriaSelecionada.ChecarCarga()}.");
+                    return Ok($"Viagem Realizada!\nCarga restante na bateria: {carro.BateriaSelecionada?.ChecarCarga()}.");
                 }
                 else
                 {
