@@ -6,6 +6,7 @@ C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\VOLVO.runtimeconfig.json
 C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\VOLVO.dll
 C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\VOLVO.pdb
 C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\DotNet_Curso\VOLVO_API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -16,6 +17,7 @@ C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.AssemblyInfo.cs
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.csproj.CoreCompileInputs.cache
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.MvcApplicationPartsAssemblyInfo.cs
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.MvcApplicationPartsAssemblyInfo.cache
+C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.sourcelink.json
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\staticwebassets.build.json
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\staticwebassets.development.json
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\staticwebassets\msbuild.VOLVO.Microsoft.AspNetCore.StaticWebAssets.props
@@ -30,4 +32,3 @@ C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\refint\VOLVO.dll
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.pdb
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.genruntimeconfig.cache
 C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\ref\VOLVO.dll
-C:\DotNet_Curso\VOLVO_API\obj\Debug\net8.0\VOLVO.sourcelink.json

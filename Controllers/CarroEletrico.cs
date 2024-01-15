@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace VOLVO_API.Controllers
 {
@@ -37,12 +38,14 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Obtém o Modelo dos carros Eletricos.")]
         public List<string> getTodosNomesCarrosEletricos()
         {
             return nomesCarrosEletricos;
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Cria um carro Eletrico.")]
         public IActionResult CriarCarroEletrico(Eletrico novoCarro)
         {
             try
@@ -58,6 +61,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpDelete("{placa}")]
+        [SwaggerOperation(Summary = "Deleta um carro Eletrico a partir de sua placa.")]
         public IActionResult ExcluirCarroEletrico(string placa)
         {
             try
@@ -80,6 +84,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpPut("{placa}")]
+        [SwaggerOperation(Summary = "Atualiza um carro Eletrico a partir de usa placa.")]
         public IActionResult AtualizarCarroEletrico(string placa, Eletrico carroAtualizado)
         {
             try
@@ -109,6 +114,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpGet("{placa}")]
+        [SwaggerOperation(Summary = "Checa a carga da bateria de um carro Eletrico a partir de usa placa.")]
         public IActionResult getCargaBateria(string placa)
         {
             try
@@ -130,6 +136,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpPost("Abastecer/{placa}/{quantidadeKW}")]
+        [SwaggerOperation(Summary = "Abastece a bateria de um carro Eletrico a partir de usa placa e quantidade KW.")]
         public IActionResult PostAbastecerBateria(string placa, double quantidadeKW)
         {
             try
@@ -158,6 +165,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpPost("Viajar/{placa}/{distanciaKM}")]
+        [SwaggerOperation(Summary = "Realiza uma viagem com um carro Eletrico a partir de usa placa e quantidade de KM.")]
         public IActionResult ViajarComCarroEletrico(string placa, double distanciaKM)
         {
             try

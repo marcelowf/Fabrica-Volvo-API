@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace VOLVO_API.Controllers
 {
@@ -12,7 +13,7 @@ namespace VOLVO_API.Controllers
     public class CarroCombustaoController : ControllerBase
     {
         public static List<Combustao> carrosCombustao;
-        public static List<string> nomesCarrosCombustao;
+        public static List<string> modeloCarrosCombustao;
 
         public CarroCombustaoController()
         {
@@ -21,35 +22,37 @@ namespace VOLVO_API.Controllers
                 carrosCombustao = new List<Combustao>();
             }
 
-            if(nomesCarrosCombustao == null)
+            if(modeloCarrosCombustao == null)
             {
-                nomesCarrosCombustao = new List<string>();
-                AdicionarListaNomesCarrosCombustao();
+                modeloCarrosCombustao = new List<string>();
+                AdicionarListamodeloCarrosCombustao();
             }
         }
 
-        static void AdicionarListaNomesCarrosCombustao()
+        static void AdicionarListamodeloCarrosCombustao()
         {
-            nomesCarrosCombustao.Clear();
+            modeloCarrosCombustao.Clear();
             foreach (Combustao carro in carrosCombustao)
             {
-                nomesCarrosCombustao.Add(carro.Modelo);
+                modeloCarrosCombustao.Add(carro.Modelo);
             }
         }
 
         [HttpGet]
-        public List<string> getTodosNomesCarrosCombustao()
+        [SwaggerOperation(Summary = "Obtém o Modelo dos carros a Combustão.")]
+        public List<string> getTodosmodeloCarrosCombustao()
         {
-            return nomesCarrosCombustao;
+            return modeloCarrosCombustao;
         }
 
         [HttpPost]
+        [SwaggerOperation(Summary = "Cria um carro a Combustão.")]
         public IActionResult CriarCarroCombustao(Combustao novoCarro)
         {
             try
             {
                 carrosCombustao.Add(novoCarro);
-                AdicionarListaNomesCarrosCombustao();
+                AdicionarListamodeloCarrosCombustao();
                 return Ok($"Carro elétrico {novoCarro.Modelo} criado com sucesso!");
             }
             catch (Exception ex)
@@ -59,6 +62,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpDelete("{placa}")]
+        [SwaggerOperation(Summary = "Deleta um carro a Combustão a partir de sua placa.")]
         public IActionResult ExcluirCarroCombustao(string placa)
         {
             try
@@ -71,7 +75,7 @@ namespace VOLVO_API.Controllers
                 }
 
                 carrosCombustao.Remove(carroParaExcluir);
-                AdicionarListaNomesCarrosCombustao();
+                AdicionarListamodeloCarrosCombustao();
                 return Ok($"Carro a Combustão de placa {placa} excluído com sucesso!");
             }
             catch (Exception ex)
@@ -81,6 +85,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpPut("{placa}")]
+        [SwaggerOperation(Summary = "Atualiza um carro a Combustão a partir de usa placa.")]
         public IActionResult AtualizarCarroCombustao(string placa, Combustao carroAtualizado)
         {
             try
@@ -100,7 +105,7 @@ namespace VOLVO_API.Controllers
                 carroExistente.NumeroPortas = carroAtualizado.NumeroPortas;
                 carroExistente.TetoSolar = carroAtualizado.TetoSolar;
 
-                AdicionarListaNomesCarrosCombustao();
+                AdicionarListamodeloCarrosCombustao();
                 return Ok($"Carro a Combustão de placa {placa} atualizado com sucesso!");
             }
             catch (Exception ex)
@@ -110,6 +115,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpGet("{placa}")]
+        [SwaggerOperation(Summary = "Checa o combustivel de um carro a Combustão a partir de usa placa.")]
         public IActionResult getCombustivelTanque(string placa)
         {
             try
@@ -121,7 +127,7 @@ namespace VOLVO_API.Controllers
                     return NotFound($"Carro com a placa {placa} não encontrado.");
                 }
                 
-                double? carga = carro.TanqueSelecionado.ChecarCombustivel();
+                double? carga = carro.TanqueSelecionado?.ChecarCombustivel();
                 return Ok($"Carga do tanque para o carro com a placa {placa}: {carga}");
             }
             catch (Exception ex)
@@ -131,6 +137,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpPost("Abastecer/{placa}/{quantidadeL}")]
+        [SwaggerOperation(Summary = "Abastece o combustivel de um carro a Combustão a partir de usa placa e quantidade de litros de combustivel.")]
         public IActionResult postAbastecerTanque(string placa, double quantidadeL)
         {
             try
@@ -159,6 +166,7 @@ namespace VOLVO_API.Controllers
         }
 
         [HttpPost("Viajar/{placa}/{distanciaKM}")]
+        [SwaggerOperation(Summary = "Realiza uma viagem com um carro a Combustão a partir de usa placa e quantidade de KM.")]
         public IActionResult ViajarComCarroCombustao(string placa, double distanciaKM)
         {
             try
@@ -172,7 +180,7 @@ namespace VOLVO_API.Controllers
 
                 if (carro.ViajarComCarro(distanciaKM))
                 {
-                    return Ok($"Viagem Realizada!\nCarga restante no tanque: {carro.TanqueSelecionado.ChecarCombustivel()}.");
+                    return Ok($"Viagem Realizada!\nCarga restante no tanque: {carro.TanqueSelecionado?.ChecarCombustivel()}.");
                 }
                 else
                 {
